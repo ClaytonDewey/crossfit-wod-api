@@ -3,7 +3,6 @@ const recordService = require('../services/recordService');
 const getAllRecords = (req, res) => {
   try {
     const allRecords = recordService.getAllRecords();
-    console.log(allRecords);
     res.send({ status: 'OK', data: allRecords });
   } catch (error) {
     res
