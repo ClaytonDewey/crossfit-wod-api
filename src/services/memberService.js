@@ -19,4 +19,17 @@ const getOneMember = (memberId) => {
   }
 };
 
-module.exports = { getAllMembers, getOneMember };
+const createNewMember = (newMember) => {
+  const memberToInsert = {
+    ...newMember,
+    id: uuid(),
+  };
+  try {
+    const createdMember = Member.createNewMember(memberToInsert);
+    return createdMember;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { getAllMembers, getOneMember, createNewMember };
