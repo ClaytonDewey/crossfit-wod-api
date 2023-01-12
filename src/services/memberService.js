@@ -32,4 +32,18 @@ const createNewMember = (newMember) => {
   }
 };
 
-module.exports = { getAllMembers, getOneMember, createNewMember };
+const updateOneMember = (memberId, changes) => {
+  try {
+    const updatedMember = Member.updateOneMember(memberId, changes);
+    return updatedMember;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  getAllMembers,
+  getOneMember,
+  createNewMember,
+  updateOneMember,
+};
