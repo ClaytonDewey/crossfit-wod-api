@@ -41,9 +41,18 @@ const updateOneMember = (memberId, changes) => {
   }
 };
 
+const deleteOneMember = (memberId) => {
+  try {
+    Member.deleteOneMember(memberId);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllMembers,
   getOneMember,
   createNewMember,
   updateOneMember,
+  deleteOneMember,
 };
