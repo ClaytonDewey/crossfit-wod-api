@@ -1,5 +1,13 @@
 const DB = require('./db.json');
 
+const getAllRecords = () => {
+  try {
+    return DB.records;
+  } catch (error) {
+    throw { status: 500, message: error };
+  }
+};
+
 const getRecordForWorkout = (workoutId) => {
   try {
     const record = DB.records.filter((record) => record.workout === workoutId);
@@ -15,4 +23,4 @@ const getRecordForWorkout = (workoutId) => {
   }
 };
 
-module.exports = { getRecordForWorkout };
+module.exports = { getRecordForWorkout, getAllRecords };

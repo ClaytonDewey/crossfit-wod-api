@@ -1,4 +1,14 @@
+const { v4: uuid } = require('uuid');
 const Record = require('../database/Record');
+
+const getAllRecords = () => {
+  try {
+    const allRecords = Record.getAllRecords();
+    return allRecords;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const getRecordForWorkout = (workoutId) => {
   try {
@@ -8,4 +18,4 @@ const getRecordForWorkout = (workoutId) => {
     throw error;
   }
 };
-module.exports = { getRecordForWorkout };
+module.exports = { getRecordForWorkout, getAllRecords };

@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', workoutController.getAllWorkouts);
 
+router.get('/records', recordController.getAllRecords);
+
 router.get('/:workoutId', workoutController.getOneWorkout);
 
 router.get('/:workoutId/records', recordController.getRecordForWorkout);
