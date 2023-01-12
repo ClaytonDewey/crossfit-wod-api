@@ -23,6 +23,8 @@ router.post('/member', memberController.createNewMember);
 
 router.patch('/:workoutId', workoutController.updateOneWorkout);
 
+router.patch('/members/:memberId', memberController.updateOneMember);
+
 router.delete('/:workoutId', workoutController.deleteOneWorkout);
 
 module.exports = router;
