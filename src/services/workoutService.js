@@ -13,11 +13,15 @@ const createNewWorkout = (newWorkout) => {
   const workoutToInsert = {
     ...newWorkout,
     id: uuid(),
-    createdAt: new Date().toLocaleDateString('en-US', { timeZone: 'UTC' }),
-    updatedAt: new Date().toLocaleDateString('en-US', { timeZone: 'UTC' }),
+    createdAt: new Date().toLocaleString('en-US', { timeZone: 'UTC' }),
+    updatedAt: new Date().toLocaleString('en-US', { timeZone: 'UTC' }),
   };
-  const createdWorkout = Workout.createNewWorkout(workoutToInsert);
-  return createdWorkout;
+  try {
+    const createdWorkout = Workout.createNewWorkout(workoutToInsert);
+    return createdWorkout;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const updateOneWorkout = (workoutId, changes) => {
