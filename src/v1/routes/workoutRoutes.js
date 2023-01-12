@@ -19,6 +19,6 @@ router.patch('/:workoutId', workoutController.updateOneWorkout);
 router.patch('/members/:memberId', memberController.updateOneMember);
 
 router.delete('/:workoutId', workoutController.deleteOneWorkout);
-router.delete('/:member', memberController.deleteOneMember);
+router.delete('/members/:memberId', memberController.deleteOneMember);
 
 module.exports = router;
