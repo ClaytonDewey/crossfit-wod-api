@@ -73,9 +73,28 @@ const updateOneMember = (memberId, changes) => {
   }
 };
 
+const deleteOneMember = (memberId) => {
+  try {
+    const indexForDeletion = DB.members.findIndex(
+      (member) => member.id === memberId
+    );
+    if (indexForDeletion === -1) {
+      throw {
+        status: 400,
+        message: `Can't find member with the id '${memberId}'`,
+      };
+    }
+    DB.members.splice(indexForDeletion, 1);
+    saveToDatabase(DB);
+  } catch (error) {
+    throw { status: error?.status || 500, message: error?.message || error };
+  }
+};
+
 module.exports = {
   getAllMembers,
   getOneMember,
   createNewMember,
   updateOneMember,
+  deleteOneMember,
 };
