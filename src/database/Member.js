@@ -27,7 +27,7 @@ const getOneMember = (memberId) => {
 const createNewMember = (newMember) => {
   try {
     const isAlreadyAdded =
-      DB.members.findIndex((member) => (member.name = newMember.name)) > -1;
+      DB.members.findIndex((member) => member.name === newMember.name) > -1;
     if (isAlreadyAdded) {
       throw {
         status: 400,
