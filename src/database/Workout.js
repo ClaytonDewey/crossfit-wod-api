@@ -1,9 +1,19 @@
 const DB = require('./db.json');
 const { saveToDatabase } = require('./utils');
 
-const getAllWorkouts = () => {
+/* 
+https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/
+Now we can use it in our database method and apply the filtering:
+*/
+const getAllWorkouts = (filterParams) => {
   try {
-    return DB.workouts;
+    let workouts = DB.workouts;
+    if (filterParams.mode) {
+      return DB.workouts.filter((workout) =>
+        workout.mode.toLowerCase().includes(filterParams.mode)
+      );
+    }
+    return workouts;
   } catch (error) {
     throw { status: 500, message: error };
   }
