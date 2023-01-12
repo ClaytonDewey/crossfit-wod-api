@@ -1,4 +1,5 @@
 const DB = require('./db.json');
+const { saveToDatabase } = require('./utils');
 
 const getAllMembers = () => {
   try {
@@ -23,4 +24,22 @@ const getOneMember = (memberId) => {
   }
 };
 
-module.exports = { getAllMembers, getOneMember };
+const createNewMember = (newMember) => {
+  try {
+    const isAlreadyAdded =
+      DB.members.findIndex((member) => (member.name = newMember.name)) > -1;
+    if (isAlreadyAdded) {
+      throw {
+        status: 400,
+        message: `Member with the name '${newMember.name}' already exists`,
+      };
+    }
+    DB.members.push(newMember);
+    saveToDatabase(DB);
+    return newMember;
+  } catch (error) {
+    throw { status: error?.status || 500, message: error?.message || error };
+  }
+};
+
+module.exports = { getAllMembers, getOneMember, createNewMember };
