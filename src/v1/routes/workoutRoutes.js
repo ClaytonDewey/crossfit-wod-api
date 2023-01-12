@@ -15,6 +15,8 @@ router.get('/:workoutId', workoutController.getOneWorkout);
 
 router.get('/:workoutId/records', recordController.getRecordForWorkout);
 
+router.get('/members/:memberId', memberController.getOneMember);
+
 router.post('/', workoutController.createNewWorkout);
 
 router.patch('/:workoutId', workoutController.updateOneWorkout);
