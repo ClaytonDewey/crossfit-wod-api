@@ -65,7 +65,7 @@ const updateOneMember = (memberId, changes) => {
       ...DB.members[indexForUpdate],
       ...changes,
     };
-    DB.workouts[indexForUpdate] = updatedMember;
+    DB.members[indexForUpdate] = updatedMember;
     saveToDatabase(DB);
     return updatedMember;
   } catch (error) {
