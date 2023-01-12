@@ -17,9 +17,13 @@ const createNewWorkout = (newWorkout) => {
   if (isAlreadyAdded) {
     return;
   }
-  DB.workouts.push(newWorkout);
-  saveToDatabase(DB);
-  return newWorkout;
+  try {
+    DB.workouts.push(newWorkout);
+    saveToDatabase(DB);
+    return newWorkout;
+  } catch (error) {
+    throw { status: 500, message: error?.message || error };
+  }
 };
 
 const updateOneWorkout = (workoutId, changes) => {
