@@ -66,4 +66,30 @@ const createNewMember = (req, res) => {
   }
 };
 
-module.exports = { getAllMembers, getOneMember, createNewMember };
+const updateOneMember = (req, res) => {
+  const {
+    body,
+    params: { memberId },
+  } = req;
+  if (!memberId) {
+    res.status(400).send({
+      status: 'FAILED',
+      data: { error: "Parameter ':memberId' can not be empty" },
+    });
+  }
+  try {
+    const updatedMember = memberService.updateOneMember(memberId, body);
+    res.send({ status: 'OK', data: updatedMember });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: 'FAILED', data: { error: error?.message || error } });
+  }
+};
+
+module.exports = {
+  getAllMembers,
+  getOneMember,
+  createNewMember,
+  updateOneMember,
+};
