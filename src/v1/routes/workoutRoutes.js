@@ -19,6 +19,8 @@ router.get('/members/:memberId', memberController.getOneMember);
 
 router.post('/', workoutController.createNewWorkout);
 
+router.post('/member', memberController.createNewMember);
+
 router.patch('/:workoutId', workoutController.updateOneWorkout);
 
 router.delete('/:workoutId', workoutController.deleteOneWorkout);
